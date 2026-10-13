@@ -4,14 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#121512">
-<meta name="description" content="RAAH 1.3 — Sanjh District expansion for the grounded first-person investigative browser game set in fictional contemporary Punjab.">
-<title>RAAH — The Unmarked Route | Personal Edition 1.3</title>
+<meta name="description" content="RAAH 1.4 — Cinematic Visual Pass for the grounded first-person investigative browser game set in fictional contemporary Punjab.">
+<title>RAAH — The Unmarked Route | Personal Edition 1.4</title>
 <style>
   :root{--ink:#141814;--paper:#e7e5d9;--muted:#999d90;--olive:#b9c27d;--amber:#d7a86d;--line:rgba(231,229,217,.18);--panel:rgba(18,22,19,.91);--red:#bd786a}
   *{box-sizing:border-box}
   html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#1b201d;color:var(--paper);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
   button{font:inherit;color:inherit;cursor:pointer}
-  #game-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;background:#7c8987;outline:none}
+  #game-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;background:#7c8987;outline:none;filter:saturate(1.08) contrast(1.045) brightness(1.01)}
+  .cinema-grade{position:absolute;inset:0;pointer-events:none;z-index:2;opacity:.38;background:linear-gradient(180deg,rgba(34,56,62,.11) 0%,transparent 28%,transparent 64%,rgba(24,26,21,.15) 100%),linear-gradient(115deg,rgba(214,164,105,.045),transparent 42%,rgba(80,105,112,.07));mix-blend-mode:soft-light}
   .grain{position:absolute;inset:0;pointer-events:none;z-index:4;opacity:.045;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.95' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.32'/%3E%3C/svg%3E");mix-blend-mode:soft-light}
   .vignette{position:absolute;inset:0;pointer-events:none;z-index:3;background:radial-gradient(ellipse at 50% 45%,transparent 42%,rgba(10,13,11,.18) 100%)}
   .hidden{display:none!important}
@@ -127,8 +128,8 @@
 </head>
 <body>
 <canvas id="game-canvas" aria-label="RAAH first-person investigation game"></canvas>
-<div class="vignette"></div><div class="grain"></div>
-<div id="boot" class="boot"><div class="boot-card"><div class="eyebrow">RAAH / Personal edition 1.3</div><h2 style="font-size:22px;letter-spacing:-.04em;margin:13px 0 7px">Preparing Sanjh District</h2><div style="font-size:11px;color:#9ca394;line-height:1.6">Loading Sanjh Town, three villages, two cities, taxi routes, enterable interiors and the connected case files.</div><div class="boot-bar"><span></span></div></div></div>
+<div class="cinema-grade" aria-hidden="true"></div><div class="vignette"></div><div class="grain"></div>
+<div id="boot" class="boot"><div class="boot-card"><div class="eyebrow">RAAH / Personal edition 1.4</div><h2 style="font-size:22px;letter-spacing:-.04em;margin:13px 0 7px">Preparing Sanjh District</h2><div style="font-size:11px;color:#9ca394;line-height:1.6">Preparing Sanjh District with cinematic lighting, atmospheric sky, improved shadows and the full connected investigation.</div><div class="boot-bar"><span></span></div></div></div>
 <div id="intro" class="intro hidden">
   <div class="intro-inner">
     <div class="brandline"><div class="brandmark"><span>R</span></div><div>RAAH <span style="color:#8c9384;font-weight:500">/ FIELD INVESTIGATION</span></div></div>
@@ -140,7 +141,7 @@
     <button id="quality-toggle" class="secondary" style="margin-left:8px">Graphics: Balanced</button>
   </div>
   <div class="intro-meta"><strong>FIELD NOTE / 001</strong>Verify before concluding.<br>Record the source, not just the claim.<br>Three villages. Two cities. One town. A district full of people with their own lives.</div>
-  <div class="intro-foot"><span>RAAH / Original browser game</span><span>Personal Edition 1.3 · District & story</span><span>WASD / Mouse / E / J / M</span></div>
+  <div class="intro-foot"><span>RAAH / Original browser game</span><span>Personal Edition 1.4 · Cinematic visual pass</span><span>WASD / Mouse / E / J / M</span></div>
 </div>
 <div id="hud" class="hidden">
   <div class="hud-top"><div class="hud-brand"><div class="hud-symbol">R.</div><div><div class="eyebrow">Sanjh District</div><div class="hud-caption">Independent field verification</div></div></div><div class="location"><span class="eyebrow">Local time</span><br>18:18 · Monsoon evening<br><span id="settlement-label" style="display:inline-block;margin-top:5px;color:#c2c9b5;max-width:180px">SANJH TOWN</span></div></div>
@@ -201,7 +202,7 @@
 <div id="map-overlay" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="map-title"><section class="overlay-card"><div class="eyebrow">RAAH / Sanjh District</div><h2 id="map-title">Field map<span style="color:var(--olive)">.</span></h2><p>Survey sketch, not a cadastral map. Locations appear as they become relevant to the investigation.</p><div class="map-layout"><svg id="district-map" viewBox="0 0 360 550" role="img" aria-label="Schematic map of Sanjh District"><rect x="0" y="0" width="360" height="550" fill="#202720"/><g id="map-roads"></g><g id="map-markers"></g></svg><div class="map-key"><p><span></span>Current position</p><p><span style="background:#d7a86d"></span>Known evidence</p><p><span style="background:#9eb6bf"></span>Visited location</p><div class="side-rule"></div><p id="map-current-location">Location: Market street</p><p>Six connected settlements. Use the road network on foot or hire a taxi from any district taxi rank. Map spacing is schematic; follow the roads in the world.</p></div></div><div class="field-actions"><button id="close-map" class="primary">Return to fieldwork ↗</button></div></section></div>
 <div id="taxi-overlay" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="taxi-title"><section class="overlay-card"><div class="eyebrow">Sanjh District / Iqbal's taxi service</div><h2 id="taxi-title">Where to?<span style="color:var(--olive)">.</span></h2><p>Pick a destination. The fare is paid from Nav's cash; if you'd rather save it, every place can still be reached on foot. Taxi journeys do not skip case prerequisites.</p><div class="district-statline"><span id="taxi-current-place">Current stop: Sanjh Town</span><span id="taxi-wallet">Cash: ₹5,000</span></div><div id="taxi-destinations" class="taxi-destinations"></div><div id="taxi-status" class="feedback">The driver knows the district roads, but cannot answer for a journey he did not witness.</div><div class="field-actions"><button id="taxi-close" class="secondary" type="button">Stay here</button></div></section></div>
 <div id="travel-fade" class="travel-fade" aria-hidden="true"></div>
-<div id="pause-overlay" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="pause-title"><section class="overlay-card"><div class="eyebrow">RAAH / Field protocol</div><h2 id="pause-title">Paused<span style="color:var(--olive)">.</span></h2><p>Fieldwork is paused. Adjust your controls and performance settings, export your save, or return to the district.</p><div class="field-actions"><button id="resume-paused" class="primary">Resume fieldwork</button><button id="map-from-pause" class="secondary">Open district map</button><button id="save-now" class="secondary">Save now</button></div><div class="settings-row"><label for="setting-quality">Graphics preset</label><select id="setting-quality"><option value="0">Performance</option><option value="1">Balanced</option><option value="2">Sharper</option></select></div><div class="settings-row"><label for="setting-sensitivity">Mouse sensitivity <span id="sensitivity-value">0.095</span></label><input id="setting-sensitivity" type="range" min="0.035" max="0.18" step="0.005" value="0.095"></div><div class="settings-row"><label for="setting-fov">Field of view <span id="fov-value">72°</span></label><input id="setting-fov" type="range" min="60" max="90" step="1" value="72"></div><div class="settings-row"><label for="setting-ambience">Procedural ambience</label><button id="setting-ambience" class="secondary">Ambient audio: Off</button></div><div class="settings-row"><label for="setting-export">Save backup</label><div><button id="setting-export" class="secondary">Export save JSON</button><label class="secondary" style="display:inline-block;margin-left:6px">Import save<input id="setting-import" type="file" accept="application/json,.json" style="display:none"></label></div></div><p class="case-panel-intro">Settings save locally. Export a backup before clearing browser data. Procedural ambience is a lightweight synthesized sound bed, not recorded environmental audio.</p><div class="field-actions"><button id="close-pause" class="secondary">Close pause menu</button></div></section></div>
+<div id="pause-overlay" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="pause-title"><section class="overlay-card"><div class="eyebrow">RAAH / Field protocol</div><h2 id="pause-title">Paused<span style="color:var(--olive)">.</span></h2><p>Fieldwork is paused. Adjust your controls, tune graphics quality, export your save, or return to the district.</p><div class="field-actions"><button id="resume-paused" class="primary">Resume fieldwork</button><button id="map-from-pause" class="secondary">Open district map</button><button id="save-now" class="secondary">Save now</button></div><div class="settings-row"><label for="setting-quality">Graphics preset</label><select id="setting-quality"><option value="0">Performance</option><option value="1">Balanced</option><option value="2">Sharper</option></select></div><div class="settings-row"><label for="setting-sensitivity">Mouse sensitivity <span id="sensitivity-value">0.095</span></label><input id="setting-sensitivity" type="range" min="0.035" max="0.18" step="0.005" value="0.095"></div><div class="settings-row"><label for="setting-fov">Field of view <span id="fov-value">72°</span></label><input id="setting-fov" type="range" min="60" max="90" step="1" value="72"></div><div class="settings-row"><label for="setting-ambience">Procedural ambience</label><button id="setting-ambience" class="secondary">Ambient audio: Off</button></div><div class="settings-row"><label for="setting-export">Save backup</label><div><button id="setting-export" class="secondary">Export save JSON</button><label class="secondary" style="display:inline-block;margin-left:6px">Import save<input id="setting-import" type="file" accept="application/json,.json" style="display:none"></label></div></div><p class="case-panel-intro">Settings save locally. Export a backup before clearing browser data. Procedural ambience is a lightweight synthesized sound bed, not recorded environmental audio.</p><div class="field-actions"><button id="close-pause" class="secondary">Close pause menu</button></div></section></div>
 <div id="finale-chapter" class="finale-chapter hidden" role="dialog" aria-modal="true" aria-labelledby="finale-title"><section class="finale-card"><span class="endgame-badge">Personal campaign / conclusion recorded</span><div class="eyebrow" style="margin-top:20px">RAAH / Sanjh District · Final reconstruction</div><h2 id="finale-title">THE ROAD<br><span>REMAINS.</span></h2><p id="finale-copy">The record supports an undocumented diversion and a later alteration to the route marker. It does not establish who took the dispatcher or why. The case is complete, but uncertainty remains.</p><p>The investigation ends with a supported account rather than an invented confession. Nav records the unresolved question and preserves the evidence for further review.</p><div class="finale-actions"><button id="finale-review" class="secondary">Review case files</button><button id="finale-continue" class="primary">Return to Sanjh ↗</button><button id="finale-export" class="secondary">Export case record</button></div></section></div>
 
 <div id="error-screen" class="error"><div class="error-card"><div class="eyebrow" style="color:var(--red)">Startup issue</div><h2>The 3D engine did not load.</h2><p id="error-message">RAAH uses the PlayCanvas browser engine. Check your internet connection, reload this HTML file, and make sure your browser has hardware acceleration enabled.</p><p style="font-size:11px;color:#8f958a">The prototype loads PlayCanvas 2.23.2 from jsDelivr; the game code and environment are contained in this HTML file.</p><button class="primary" onclick="location.reload()"><span>Try again</span><span class="arrow">↻</span></button></div></div>
@@ -212,7 +213,7 @@
   const $ = (id) => document.getElementById(id);
   const boot = $('boot'), intro = $('intro'), hud = $('hud'), journal = $('caseboard');
   const interactPrompt = $('interact-prompt'), resumeHint = $('resume-hint'), toast = $('toast');
-  let app, camera, playing=false, journalOpen=false, paused=false, mapOpen=false, taxiOpen=false, taxiTraveling=false, renderScale=.60, qualityMode=0, toastTimer=0, fpsElapsed=0, fpsFrames=0, mouseSensitivity=.095, fieldOfView=72, ambienceEnabled=false, audioContext=null, ambienceNodes=[];
+  let app, camera, skyDome=null, skyTexture=null, playing=false, journalOpen=false, paused=false, mapOpen=false, taxiOpen=false, taxiTraveling=false, renderScale=.72, qualityMode=1, toastTimer=0, fpsElapsed=0, fpsFrames=0, mouseSensitivity=.095, fieldOfView=72, ambienceEnabled=false, audioContext=null, ambienceNodes=[];
   let yaw=0, pitch=-2, px=0, pz=20.5, walkTime=0;
   const keys = Object.create(null), pressed = new Set();
   function clearHeldInput(){ for(const k of Object.keys(keys)) keys[k]=false; pressed.clear(); }
@@ -283,9 +284,39 @@
     const key=[hex,opts.emissive||'',opts.gloss??'',opts.texture||'',opts.tiling??1,opts.tilingY??opts.tiling??1].join('|');
     if(matCache.has(key)) return matCache.get(key);
     const m=new pc.StandardMaterial(); m.diffuse=color(hex); m.gloss=opts.gloss??0.24;
+    // Keep materials lightweight, but use a predictable rough/metal response instead of glossy defaults.
+    m.useMetalness=true; m.metalness=opts.metalness??0;
+    m.specular.set(0.22,0.22,0.20); m.aoIntensity=0.72;
     if(opts.texture){m.diffuseMap=makeSurfaceTexture(opts.texture);m.diffuseMapTiling.set(opts.tiling??1,opts.tilingY??opts.tiling??1);}
-    if(opts.emissive){m.emissive=color(opts.emissive);}
+    if(opts.emissive){m.emissive=color(opts.emissive);m.emissiveIntensity=opts.emissiveIntensity??1;}
     m.update(); matCache.set(key,m); return m;
+  }
+
+  // Cinematic sky dome: procedural gradient/cloud texture avoids network assets and stays cheap.
+  function createCinematicSky(){
+    const sky=document.createElement('canvas');sky.width=1536;sky.height=768;
+    const ctx=sky.getContext('2d',{alpha:false});
+    const g=ctx.createLinearGradient(0,0,0,768);
+    g.addColorStop(0,'#4f6974');g.addColorStop(.22,'#6e8889');g.addColorStop(.48,'#9aada4');g.addColorStop(.67,'#c5c4aa');g.addColorStop(.82,'#d6b890');g.addColorStop(1,'#8a8d77');
+    ctx.fillStyle=g;ctx.fillRect(0,0,sky.width,sky.height);
+    // Soft, horizontally stretched cloud banks with deterministic layout.
+    let seed=177013;const rand=()=>{seed=(seed*1664525+1013904223)>>>0;return seed/4294967296;};
+    ctx.save();ctx.filter='blur(23px)';
+    for(let i=0;i<62;i++){
+      const x=rand()*sky.width,y=70+rand()*360,rx=45+rand()*155,ry=5+rand()*19;
+      const alpha=.025+rand()*.065;ctx.fillStyle=`rgba(${rand()>.38?235:71},${rand()>.38?225:92},${rand()>.38?201:93},${alpha})`;
+      ctx.beginPath();ctx.ellipse(x,y,rx,ry,(rand()-.5)*.12,0,Math.PI*2);ctx.fill();
+    }
+    ctx.restore();
+    // Low warm sun-glow near the horizon, deliberately subtle rather than a glowing disc.
+    const sun=ctx.createRadialGradient(1160,420,8,1160,420,250);
+    sun.addColorStop(0,'rgba(251,218,166,.34)');sun.addColorStop(.35,'rgba(230,192,143,.13)');sun.addColorStop(1,'rgba(230,192,143,0)');
+    ctx.fillStyle=sun;ctx.fillRect(850,170,600,460);
+    const texture=new pc.Texture(app.graphicsDevice,{width:sky.width,height:sky.height,mipmaps:true,name:'RAAH / cinematic procedural sky'});
+    texture.setSource(sky);texture.addressU=pc.ADDRESS_REPEAT;texture.addressV=pc.ADDRESS_CLAMP_TO_EDGE;
+    const mat=new pc.StandardMaterial();mat.name='RAAH / unlit sky gradient';mat.diffuse=color('#000000');mat.emissive=color('#ffffff');mat.emissiveMap=texture;mat.useLighting=false;mat.useFog=false;mat.cull=pc.CULLFACE_NONE;mat.depthWrite=false;mat.update();
+    const entity=new pc.Entity('RAAH / cinematic sky dome');entity.addComponent('render',{type:'sphere',material:mat,castShadows:false,receiveShadows:false});
+    entity.setLocalScale(1800,1800,1800);app.root.addChild(entity);skyTexture=texture;skyDome=entity;return entity;
   }
 
   const signMaterials = new Map();
@@ -499,7 +530,7 @@
   }
   function localPart(parent,name,type,x,y,z,sx,sy,sz,mat,rx=0,ry=0,rz=0,renderOpts={}){
     const e=new pc.Entity(name);
-    e.addComponent('render',{type,material:mat,castShadows:!!renderOpts.castShadows,receiveShadows:!!renderOpts.receiveShadows});
+    const coreShadowPart=/person \/ shaped torso|owner \/ kurta body|owner \/ face/.test(name);e.addComponent('render',{type,material:mat,castShadows:renderOpts.castShadows??coreShadowPart,receiveShadows:renderOpts.receiveShadows??coreShadowPart});
     e.setLocalScale(sx,sy,sz);e.setLocalPosition(x,y,z);e.setLocalEulerAngles(rx,ry,rz);parent.addChild(e);return e;
   }
 
@@ -608,7 +639,7 @@
     configs.forEach(createPedestrian);
   }
 
-  // RAAH 1.3: a six-settlement district graph. These coordinates are the shared source for roads, taxi routes and the map.
+  // RAAH 1.4: a six-settlement district graph. These coordinates are the shared source for roads, taxi routes and the map.
   const districtSites=[
     {id:'sanjh-town',name:'Sanjh Town',kind:'District town',x:0,z:0,type:'town',spawnX:0,zSpawn:20.5,short:'SANJH',colour:'#b7bd85'},
     {id:'chakk-dhaliwal',name:'Chakk Dhaliwal',kind:'Village',x:-112,z:-225,type:'village',spawnX:-110,zSpawn:-205,short:'CHAKK',colour:'#9fb58b'},
@@ -629,8 +660,8 @@
     const {site,x,z,side,kind='home',name=kind,width=5.2,depth=7.6,height=4.4,wall='#b8ad96',trim='#d7cbb3',accent='#87654c',sign='',enterable=null}=cfg;
     const bodyMat=material(wall,{texture:'plaster',tiling:1.25});const trimMat=material(trim,{texture:'concrete',tiling:1.3});
     const roofMat=material('#777365',{texture:'concrete',tiling:1.8});const glassMat=material('#394a46',{gloss:.42});const doorMat=material('#514a3d',{texture:'wood',tiling:1.4});
-    box(name+' / main volume',x,height/2,z,width,height,depth,bodyMat,{receiveShadows:true});
-    box(name+' / parapet',x,height+.04,z,width+.22,.16,depth+.22,trimMat);
+    box(name+' / main volume',x,height/2,z,width,height,depth,bodyMat,{castShadows:true,receiveShadows:true});
+    box(name+' / parapet',x,height+.04,z,width+.22,.16,depth+.22,trimMat,{castShadows:true,receiveShadows:true});
     box(name+' / roof cap',x,height+.14,z,width+.10,.08,depth+.10,roofMat);
     const fx=x-side*width/2;
     const face=fx-side*.055;
@@ -818,10 +849,14 @@
       box(site.name+' / connector road',site.x/2,-.02,site.z,branchLen,.11,7.6,asphalt,{receiveShadows:true});
       for(const dz of [-4.0,4.0])box(site.name+' / connector curb',site.x/2,.03,site.z+dz,branchLen,.14,.12,curb);
       box(site.name+' / main street',site.x,-.02,site.z,9.4,.12,88,asphalt,{receiveShadows:true});
+      // Broken lane dashes and small repairs give streets a readable scale without a costly decal system.
+      for(let dz=-38;dz<=38;dz+=11.5)box(site.name+' / lane dash',site.x,.047,site.z+dz,.075,.012,2.0,lanePaint);
+      for(const patch of [-31,-8,21,34])box(site.name+' / asphalt repair',site.x+(patch%2?1.55:-1.45),.046,site.z+patch,1.1,.009,.72,material('#3d433f',{texture:'asphalt',tiling:1.2,tilingY:1.2}));
       for(const sx of [-4.8,4.8])box(site.name+' / footpath',site.x+sx,.02,site.z,.9,.15,88,curb);
       const crossWidth=site.type==='city'?76:43;
       for(const dz of [-28,2,30]){
         box(site.name+' / cross street',site.x,-.02,site.z+dz,crossWidth,.11,5.5,asphalt);
+        if(site.type==='city'&&(dz===-28||dz===30))for(let stripe=-3;stripe<=3;stripe++)box(site.name+' / zebra crossing',site.x+stripe*1.08,.047,site.z+dz+3.2,.62,.012,.24,material('#b9b8a6',{texture:'concrete',tiling:.7}));
         for(const s of [-1,1])box(site.name+' / cross street curb',site.x,-.005,site.z+dz+s*2.95,crossWidth,.14,.12,curb);
       }
       if(site.type==='city'){
@@ -962,8 +997,7 @@
       box('canal bridge parapet cap',x,.86,-39,.28,.08,3.65,material('#d0c8b2'));
     }
     // Keep the canal bank impassable off the bridge while leaving the road crossing clear.
-    addCollider(-18,-4.82,-40.28,-37.72); addCollider(4.82,18,-40.28,-37.72);
-    addCollider(-4.75,-4.30,-40.72,-37.28); addCollider(4.30,4.75,-40.72,-37.28);
+    addCollider(-18,-4.82,-40.28,-37.72); addCollider(4.82,18,-40.28,-37.72);    addCollider(-4.75,-4.30,-40.72,-37.28); addCollider(4.30,4.75,-40.72,-37.28);
     // Buildings are staggered rather than repeated in a perfect row.
     buildBuilding(-1,21,{kind:'home',width:4.5,depth:7.5,height:4.5,wall:'#b9a98f',trim:'#d3c8b1',door:'#5a5b4b',ac:true});
     buildBuilding(1,20,{kind:'auto',width:4.1,depth:7.4,height:5.0,wall:'#b7b69e',trim:'#dad3bd',door:'#4c5a4f',sign:'AUTO',signColor:'#414b3f',ac:true});
@@ -997,7 +1031,8 @@
     cylinder('kettle / handle right',4.28,1.57,-12.35,.035,.15,.035,darkSteel,0,0,25);
     for(const [x,z] of [[4.43,-14.2],[4.13,-14.16]]){
       cylinder('chai glass / body',x,1.47,z,.075,.12,.075,glass);
-      cylinder('chai glass / tea',x,1.51,z,.061,.055,.061,chai);    }
+      cylinder('chai glass / tea',x,1.51,z,.061,.055,.061,chai);
+    }
     cylinder('biscuit tin / body',4.64,1.52,-14.52,.13,.20,.13,material('#b59b6b',{gloss:.32}));
     cylinder('biscuit tin / lid',4.64,1.735,-14.52,.14,.025,.14,steel);
 
@@ -1309,10 +1344,16 @@
     createAmbientPedestrians();
 
     // Grounded atmosphere: low haze and a soft late-day directional light.
-    app.scene.ambientLight = new pc.Color(.48,.49,.44);
-    app.scene.fog.type = pc.FOG_LINEAR; app.scene.fog.color = new pc.Color(.57,.62,.61); app.scene.fog.start=48; app.scene.fog.end=152;
-    const sun = new pc.Entity('late monsoon daylight'); sun.addComponent('light',{type:'directional',color:new pc.Color(.91,.83,.70),intensity:1.05,castShadows:true,shadowResolution:512,shadowType:pc.SHADOW_PCF3});
-    sun.setEulerAngles(32, -25, 0); app.root.addChild(sun);
+    app.scene.ambientLight = new pc.Color(.39,.42,.40);
+    app.scene.fog.type = pc.FOG_LINEAR; app.scene.fog.color = new pc.Color(.62,.67,.64); app.scene.fog.start=118; app.scene.fog.end=390;
+    const sun = new pc.Entity('late monsoon key light'); sun.addComponent('light',{type:'directional',color:new pc.Color(1.0,.86,.70),intensity:1.22,castShadows:true,shadowResolution:1024,shadowType:pc.SHADOW_PCF3,normalOffsetBias:.035});
+    sun.setEulerAngles(36, -28, 0); app.root.addChild(sun);
+    createCinematicSky();
+    // Low-range practical pools add local contrast around important evening gathering places.
+    const addPractical=(name,x,y,z,r,g,b,intensity,range)=>{const e=new pc.Entity(name);e.addComponent('light',{type:'point',color:new pc.Color(r,g,b),intensity,range,castShadows:false,affectDynamic:true,affectLightmapped:false});e.setPosition(x,y,z);app.root.addChild(e);return e;};
+    addPractical('chai stall / warm work light',4.25,2.72,-13.4,1.0,.67,.38,.42,8.5);
+    addPractical('Sanjh shopfront / warm practical',-6.8,3.0,-15.0,1.0,.78,.52,.22,6.0);
+    addPractical('weighbridge booth / old bulb',13.0,2.8,-92.2,1.0,.72,.44,.20,5.5);
   }
 
   function createCaseExpansionProps(){
@@ -1663,7 +1704,7 @@
     };
     reader.readAsText(file);
   }
-  function setQuality(mode){qualityMode=Math.max(0,Math.min(2,Number(mode)||0));renderScale=[.60,.72,.90][qualityMode];const labels=['Performance','Balanced','Sharper'];$('quality-toggle').textContent='Graphics: '+labels[qualityMode];resizeCanvas();persistGameSave();}
+  function setQuality(mode){qualityMode=Math.max(0,Math.min(2,Number(mode)||0));renderScale=[.60,.78,1.0][qualityMode];const labels=['Performance','Balanced','Sharper'];$('quality-toggle').textContent='Graphics: '+labels[qualityMode];resizeCanvas();persistGameSave();}
   function stopAmbientAudio(){ambienceNodes.forEach(n=>{try{n.stop?.();n.disconnect?.();}catch{}});ambienceNodes=[];try{audioContext?.close();}catch{}audioContext=null;ambienceEnabled=false;}
   async function startAmbientAudio(){try{const AC=window.AudioContext||window.webkitAudioContext;if(!AC){showToast('Audio unavailable','This browser does not expose Web Audio.');return;}if(audioContext){await audioContext.resume();ambienceEnabled=true;return;}audioContext=new AC();const sampleRate=audioContext.sampleRate,buffer=audioContext.createBuffer(1,sampleRate*2,sampleRate),data=buffer.getChannelData(0);let last=0;for(let i=0;i<data.length;i++){last=(last+.025*(Math.random()*2-1))/.995;data[i]=last;}const noise=audioContext.createBufferSource();noise.buffer=buffer;noise.loop=true;const filter=audioContext.createBiquadFilter();filter.type='lowpass';filter.frequency.value=430;const gain=audioContext.createGain();gain.gain.value=.025;noise.connect(filter);filter.connect(gain);gain.connect(audioContext.destination);noise.start();const hum=audioContext.createOscillator(),hg=audioContext.createGain();hum.type='sine';hum.frequency.value=57;hg.gain.value=.006;hum.connect(hg);hg.connect(audioContext.destination);hum.start();ambienceNodes=[noise,hum,filter,gain,hg];ambienceEnabled=true;showToast('Ambient bed on','Low procedural ambience is active. This is synthesized audio, not field recording.');}catch(e){stopAmbientAudio();showToast('Audio unavailable','The browser could not start procedural ambience.');}}
   function showToast(title,body){
@@ -1802,7 +1843,8 @@
   }
   function makeCamera(){
     const camera=new pc.Entity('first-person field camera');
-    camera.addComponent('camera',{clearColor:new pc.Color(.56,.64,.66),fov:fieldOfView,nearClip:.08,farClip:180,frustumCulling:true});
+    camera.addComponent('camera',{clearColor:new pc.Color(.56,.64,.66),fov:fieldOfView,nearClip:.08,farClip:1100,frustumCulling:true,toneMapping:pc.TONEMAP_FILMIC,gammaCorrection:pc.GAMMA_SRGB});
+    if(camera.camera){if(pc.TONEMAP_FILMIC!==undefined)camera.camera.toneMapping=pc.TONEMAP_FILMIC;if(pc.GAMMA_SRGB!==undefined)camera.camera.gammaCorrection=pc.GAMMA_SRGB;}
     app.root.addChild(camera);return camera;
   }
   function wouldCollide(x,z){
@@ -1865,7 +1907,7 @@
 
   try{
     app = new pc.Application(canvas,{
-      graphicsDeviceOptions:{alpha:false,antialias:false,depth:true,stencil:false,powerPreference:'low-power'},
+      graphicsDeviceOptions:{alpha:false,antialias:true,depth:true,stencil:false,powerPreference:'high-performance'},
       mouse:new pc.Mouse(canvas), keyboard:new pc.Keyboard(window)
     });
     app.setCanvasFillMode(pc.FILLMODE_NONE);
@@ -1880,7 +1922,7 @@
     restoredSave=restoreGameSave();
     if(restoredSave)persistGameSave(); // Normalise older valid saves to v11 after migration.
     camera.setPosition(px,1.70,pz);camera.setEulerAngles(pitch,yaw,0);if(camera.camera)camera.camera.fov=fieldOfView;
-    renderScale=[.60,.72,.90][qualityMode]||.60;resizeCanvas();
+    renderScale=[.60,.78,1.0][qualityMode]||.78;resizeCanvas();
     createEvidenceProps();setupCaseboard();$('setting-quality').value=String(qualityMode);$('setting-sensitivity').value=String(mouseSensitivity);$('setting-fov').value=String(fieldOfView);$('sensitivity-value').textContent=mouseSensitivity.toFixed(3);$('fov-value').textContent=fieldOfView+'°';$('setting-ambience').textContent='Ambient audio: '+(ambienceEnabled?'On':'Off');
     boot.classList.add('hidden');intro.classList.remove('hidden');
 
@@ -1890,7 +1932,7 @@
       showToast(!storageAvailable?'Browser saving unavailable':restoredSave?'Saved fieldwork restored':'Fieldwork started',!storageAvailable?'This browser session cannot use local storage. Progress may not persist; use Export save when possible.':restoredSave?'Previously recorded evidence has been restored from this browser.':'The official route record is incomplete. Find the physical evidence before forming a theory.');
       if(ambienceEnabled)startAmbientAudio();const sl=$('settlement-label');if(sl)sl.textContent=insideBuilding?'INDOORS / '+(worldDoors.find(d=>d.id===insideBuilding)?.name||'BUILDING').toUpperCase():nearestDistrictSite(px,pz).name.toUpperCase();restoredSave=false;
     });
-    const qualityModes=[{label:'Performance',scale:.60},{label:'Balanced',scale:.72},{label:'Sharper',scale:.90}];
+    const qualityModes=[{label:'Performance',scale:.60},{label:'Balanced',scale:.78},{label:'Sharper',scale:1.0}];
     $('quality-toggle').textContent='Graphics: '+qualityModes[qualityMode].label;
     $('quality-toggle').addEventListener('click',()=>{
       qualityMode=(qualityMode+1)%qualityModes.length;
@@ -1954,8 +1996,7 @@
         }
         const walking=ped.state==='walk'&&!dialogueOpen;
         if(walking){ped.z+=ped.direction*ped.speed*dt;if(ped.z<=ped.minZ){ped.z=ped.minZ;ped.direction=1;ped.state='pause';ped.stateTimer=1.4;}if(ped.z>=ped.maxZ){ped.z=ped.maxZ;ped.direction=-1;ped.state='pause';ped.stateTimer=1.2;}}
-        ped.root.setPosition(ped.baseX,0,ped.z);
-        let desiredYaw=ped.direction<0?0:180;
+        ped.root.setPosition(ped.baseX,0,ped.z);        let desiredYaw=ped.direction<0?0:180;
         // People can notice a nearby player without stopping their whole routine indefinitely.
         if(nearPlayer&&ped.role!=='worker'){const dx=px-ped.baseX,dz=pz-ped.z;desiredYaw=Math.atan2(-dx,-dz)*180/Math.PI;}
         const current=ped.root.getEulerAngles().y;let yawDiff=((desiredYaw-current+540)%360)-180;
@@ -1996,7 +2037,8 @@
       saveTimer+=dt;if(saveTimer>=12){saveTimer=0;persistGameSave();}
       if(journalOpen||dialogueOpen)return;
       let mx=0,mz=0;const forwardX=-Math.sin(yaw*Math.PI/180),forwardZ=-Math.cos(yaw*Math.PI/180);
-      const rightX=Math.cos(yaw*Math.PI/180),rightZ=-Math.sin(yaw*Math.PI/180);      if(keys.KeyW||keys.ArrowUp){mx+=forwardX;mz+=forwardZ;}
+      const rightX=Math.cos(yaw*Math.PI/180),rightZ=-Math.sin(yaw*Math.PI/180);
+      if(keys.KeyW||keys.ArrowUp){mx+=forwardX;mz+=forwardZ;}
       if(keys.KeyS||keys.ArrowDown){mx-=forwardX;mz-=forwardZ;}
       if(keys.KeyD||keys.ArrowRight){mx+=rightX;mz+=rightZ;}
       if(keys.KeyA||keys.ArrowLeft){mx-=rightX;mz-=rightZ;}
@@ -2007,7 +2049,7 @@
         walkTime+=dt;
       }
       const bob=moving?Math.sin(walkTime*9)*.018:0;
-      camera.setPosition(px,1.70+bob,pz);camera.setEulerAngles(pitch,yaw,0);
+      camera.setPosition(px,1.70+bob,pz);camera.setEulerAngles(pitch,yaw,0);if(skyDome)skyDome.setPosition(px,1.70,pz);
       if(!insideBuilding){const nearSite=districtSites.find(s=>Math.hypot(px-s.x,pz-s.z)<42);if(nearSite&&!visitedSites.has(nearSite.id)){visitedSites.add(nearSite.id);persistGameSave();showToast('Location visited / '+nearSite.name,'New settlement recorded on the district map.');}}
       updateTarget();
     });
